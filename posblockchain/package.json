@@ -1,0 +1,30 @@
+{
+  "name": "posblockchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./app",
+    "ico": "nodemon ./ico"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "@types/speakeasy": "^2.0.5",
+    "body-parser": "^1.19.0",
+    "circular-json": "^0.5.9",
+    "crypto-js": "^3.1.9-1",
+    "elliptic": "^6.5.1",
+    "express": "^4.17.1",
+    "json-stringify-safe": "^5.0.1",
+    "mongodb": "^3.3.3",
+    "speakeasy": "^2.0.0",
+    "uuid": "^3.3.3",
+    "ws": "^7.2.0"
+  }
+}
