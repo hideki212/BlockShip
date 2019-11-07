@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      window.onload = function() {
+        var chart = new CanvasJS.Chart("chartContainer", {
+          title: {
+            text: "Yearly results"
+          },
+
+          data: [
+            //array of dataSeries
+            {
+              //dataSeries - first quarter
+              /*** Change type "column" to "bar", "area", "line" or "pie"***/
+
+              type: "column",
+              name: "First Quarter",
+              showInLegend: true,
+              dataPoints: [
+                { label: "2012", y: 58 },
+                { label: "2013", y: 69 },
+                { label: "2014", y: 80 },
+                { label: "2015", y: 74 },
+                { label: "2016", y: 64 }
+              ]
+            },
+
+            {
+              //dataSeries - second quarter
+
+              type: "column",
+              name: "Second Quarter",
+              showInLegend: true,
+              dataPoints: [
+                { label: "2012", y: 63 },
+                { label: "2013", y: 73 },
+                { label: "2014", y: 88 },
+                { label: "2015", y: 77 },
+                { label: "2016", y: 60 }
+              ]
+            }
+          ],
+          /** Set axisY properties here*/
+          axisY: {
+            prefix: "$",
+            suffix: "K",
+            includeZero: false
+          }
+        });
+
+        chart.render();
+      };
+    </script>
+  
+    <script
+      type="text/javascript"
+      src="https://canvasjs.com/assets/script/canvasjs.min.js"
+    ></script>
+    <script src="js/script.js"></script>
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="active" href="#home">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+    </div>
+    <!-- Side navigation -->
+    <div class="sidenav">
+      <a href="editprofile.html">Edit Profile</a>
+      <a href="createbilloflading.html">Create Bill of Lading</a>
+      <a href="Analytics.html">Analytics</a>
+    </div>
+    <!-- Page content -->
+    <div class="main">
+      <br />
+      <div id="chartContainer" style="height: 500px; width: 100%;"></div>
+
+      <br>
+      <div id="chartContainer2" style="height: 300px; width: 100%;">
+        </div>
+    </div>
+  </body>
+</html>

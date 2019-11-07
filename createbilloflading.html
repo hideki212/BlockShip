@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HomePage</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/script.js"></script>
+  </head>
+  <body>
+    <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+    </div>
+    <!-- Side navigation -->
+    <div class="sidenav">
+            <a href="editprofile.html">Edit Profile</a>
+            <a href="createbilloflading.html">Create Bill of Lading</a>
+            <a href="Analytics.html">Analytics</a>
+    </div> 
+      <!-- Page content -->
+    <div class="main">
+        <br>
+  <div>
+<form id="billoflading" action="http://localhost:3000/ico/transact" method="post" style="border:1px solid #ccc; padding: 10px; background-color: white; width: 90%; margin-left: auto; margin-right: auto;">
+    <div class="row">
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="Bill Number" name="BolNumber" required>
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" type="text" placeholder="Carrier name" name="CarrierName" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input class="form-control" type="text" placeholder="SPAC" name="SPAC" required>
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" type="text" placeholder="Trailer Number" name="TrailerNumber" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="Pro Number" name="ProNumber" required>
+        </div>
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="Serial Number" name="SerialNumber" required>
+        </div>
+    </div>
+    <p>Ship from: </p>
+    <div class="row">
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="Name" name="Shipfromname" required>
+        </div>
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="SID No" name="SIDNo" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="Address Line 1" name="FromAddressLine1" required>
+        </div>
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="Address Line 2" name="FromAddressLine2" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="City" name="FromCity" required>
+        </div>
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="State" name="FromState" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="Zip Code" name="FromZipCode" required>
+        </div>
+        <div class="col-md-6">
+                
+        </div>
+    </div>
+    <p>Ship to:</p>
+    <div class="row">
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="Name" name="Shiptoname" required>
+        </div>
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="CID No" name="CIDNo" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="Address Line 1" name="ToAddressLine1" required>
+        </div>
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="Address Line 2" name="ToAddressLine2" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input class="form-control" type="text" placeholder="City" name="ToCity" required>
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" type="text" placeholder="State" name="ToState" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input class="form-control" type="text" placeholder="Zip Code" name="ToZipCode" required>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+    <p>Third Party Freight charges:</p>
+    <div class="row">
+        <div class="col-md-6">
+            <input class="form-control" type="text" placeholder="Name" name="Thirdpartyname" required>
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" type="text" placeholder="Address Line 1" name="TPAddressLine1" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="Address Line 2" name="TPAddressLine2" required>
+               
+        </div>
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="City" name="TPCity" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="State" name="TPState" required>
+            
+        </div>
+        <div class="col-md-6">
+            
+            <input class="form-control" type="text" placeholder="Zip Code" name="TPZipCode" required>
+        </div>
+    </div>
+    <p>Freight Charges Terms:</p>
+    <div class="row">
+        <div class="col-md-6">
+                <input  type="radio" name="FCT" value="prepaid"> Prepaid
+                <input  type="radio" name="FCT" value="Collect"> Collect
+                <input type="radio" name="FCT" value="3rd Party"> 3rd Party 
+                <input class="form-control" type="text" name="3rdparty" required><br>
+        </div>
+        <div class="col-md-6">
+            <input type="checkbox" name="Masterbill" value="Masterbill" checked> Master bill of lading with attached underlying bills of lading<br><br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input class="form-control btn btn-primary" type="button" value="Submit" onclick="submitBill()">
+        </div>
+    
+    </div>
+  </div>
+</form>
+<br>
+    </div>
+  </body>
+</html>
