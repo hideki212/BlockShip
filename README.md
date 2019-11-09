@@ -6,6 +6,7 @@
 <p>2. navigate to the blockshipweb folder in the terminal</p>
 <p>3. in the terminal type npm install </p>
 <p>4. in terminal type npm start </p>
+<h3>Note that we have blockshipweb folder and blockshipwebold folder use the blockshipwebfolder</h3>
 
 <h1>How to run the API</h1>
 <p>1. install nodejs current from https://nodejs.org/en/</p>
