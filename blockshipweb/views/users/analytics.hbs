@@ -1,0 +1,61 @@
+<script type="text/javascript">
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            title: {
+                text: "Yearly results"
+            },
+            data: [
+                //array of dataSeries
+                {
+                    //dataSeries - first quarter
+                    /*** Change type "column" to "bar", "area", "line" or "pie"***/
+
+                    type: "column",
+                    name: "First Quarter",
+                    showInLegend: true,
+                    dataPoints: [
+                        { label: "2012", y: 58 },
+                        { label: "2013", y: 69 },
+                        { label: "2014", y: 80 },
+                        { label: "2015", y: 74 },
+                        { label: "2016", y: 64 }
+                    ]
+                },
+
+                {
+                    //dataSeries - second quarter
+
+                    type: "column",
+                    name: "Second Quarter",
+                    showInLegend: true,
+                    dataPoints: [
+                        { label: "2012", y: 63 },
+                        { label: "2013", y: 73 },
+                        { label: "2014", y: 88 },
+                        { label: "2015", y: 77 },
+                        { label: "2016", y: 60 }
+                    ]
+                }
+            ],
+            /** Set axisY properties here*/
+            axisY: {
+                prefix: "$",
+                suffix: "K",
+                includeZero: false
+            }
+        });
+
+        chart.render();
+    };
+</script>
+
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<div class="main">
+    <br />
+    <div id="chartContainer" style="height: 500px; width: 100%;"></div>
+
+    <br>
+    <div id="chartContainer2" style="height: 300px; width: 100%;">
+    </div>
+</div>
