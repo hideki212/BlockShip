@@ -1,13 +1,29 @@
 body {
-	background-image: url("/public/images/background.jpeg");
-	background-repeat: no-repeat;
+  background-image: url("/public/images/background.jpeg");
+  background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
-	z-index:-1;
+  z-index: -1;
+}
+.col-centered {
+  margin: 0 auto;
 }
 
+.topnav img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background: #555;
+}
+
+.topnav h1 {
+  text-align: center;
+  position: relative;
+  top: 18px;
+  left: 10px;
+}
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 .sidenav {
   height: 100%; /* Full-height: remove this if you want "auto" height */
@@ -35,11 +51,14 @@ a {
   color: #f1f1f1;
 }
 
-
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }
 /* Add a black background color to the top navigation */
 .topnav {
@@ -65,7 +84,7 @@ a {
 
 /* Add a color to the active/current link */
 .topnav a.active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 .row {

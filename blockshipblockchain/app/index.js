@@ -6,6 +6,9 @@ const Wallet = require("../wallet/wallet.js");
 const TransactionPool = require("../wallet/transaction-pool");
 const Account = require('../blockchain/account')
 const SHA256 = require("crypto-js/sha256");
+const jwt = require('jsonwebtoken');
+const config = require('../config');
+const middleware = require('../user/middlewareJWToken');
 const HTTP_PORT = process.env.HTTP_PORT || 3001;
 // create a new wallet
 const wallet = new Wallet(Date.now().toString());
@@ -29,23 +32,23 @@ const account = new Account();
 //EXPOSED APIs
 
 //api to get the blocks
-app.get("/blocks", (req, res) => {
+app.get("/blocks",middleware.checkToken, (req, res) => {
   res.json(blockchain.chain);
 });
 
-app.get("/transactions", (req, res) => {
+app.get("/transactions",middleware.checkToken, (req, res) => {
   res.send(transactionPool.transactions);
 });
 
 //api to add blocks
-app.post("/mine", (req, res) => {
+app.post("/mine",middleware.checkToken, (req, res) => {
   const block = blockchain.addBlock(req.body.data);
   console.log(`New block added: ${block.toString()}`);
   p2pserver.syncChain();
   res.redirect("/blocks");
 });
 // create transactions
-app.post("/transact", (req, res) => {
+app.post("/transact",middleware.checkToken, (req, res) => {
   const { to, amount, info, type } = req.body;
   const transaction = wallet.createTransaction(
     to,
@@ -58,11 +61,11 @@ app.post("/transact", (req, res) => {
   res.redirect("/transactions");
 });
 
-app.get("/public-key", (req, res) => {
+app.get("/public-key",middleware.checkToken, (req, res) => {
   res.json({ publicKey: wallet.publicKey });
 });
 
-app.get("/balance", (req, res) => {
+app.get("/balance",middleware.checkToken, (req, res) => {
   var balance = 0;
   transactionPool.transactions.forEach(transaction => {
     if(transaction.output.to == wallet.publicKey){
@@ -73,7 +76,7 @@ app.get("/balance", (req, res) => {
   console.log(blockchain.getBalance(wallet.publicKey));
   res.json({ balance: balance });
 });
-app.get("/data", (req, res) => {
+app.get("/data",middleware.checkToken, (req, res) => {
   var data = [];
   transactionPool.transactions.forEach(transaction => {
     if(transaction.output.to == wallet.publicKey){
