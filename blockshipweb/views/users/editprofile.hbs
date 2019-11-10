@@ -1,44 +1,66 @@
-<div class="main">
-    <br />
-    <form action="http://localhost:/3000/ico/createuser" style="border:1px solid #ccc; background-color: white; width: 66%;
-        margin-left: auto;
-        margin-right: auto;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <input class="form-control" type="text" placeholder="Enter Company Name" name="company" required />
-                </div>
-                <div class="col-md-6">
-                    <input class="form-control" type="text" placeholder="Enter address line 1" name="address"
-                        required />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <input class="form-control" type="text" placeholder="Enter address line 2" name="address2"
-                        required />
-                </div>
-                <div class="col-md-6">
-                    <input class="form-control" type="text" placeholder="Enter state Name" name="state" required />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <input class="form-control" type="text" placeholder="Enter zip" name="zip" required />
-                </div>
-                <div class="col-md-6">
-                    <input class="form-control" type="text" placeholder="Enter country Name" name="country" required />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <input class="form-control" type="text" placeholder="Enter phone" name="phone" required />
-                </div>
-                <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" value="submit" style="margin-top: 5px;">
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="/user/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+                Home</a> </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>Edit Profile</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form method="POST" action="http://localhost:/3005/edituser" class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label">Company Name :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="Company Name" name="company" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Address Line 1 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="Address Line 1" name="address" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Address Line 2 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="Address Line 2" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">State :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="State" name="state" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Zipcode :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="zip" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Country :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="country" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Phone :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="phone" />
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-</div>
-</form>
+    </div>
 </div>

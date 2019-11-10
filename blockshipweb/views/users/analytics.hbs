@@ -1,61 +1,207 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"><a href="/users/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Charts &amp; graphs</a></div>
+    <h1>Charts &amp; graphs</h1>
+  </div>
+  <div class="container-fluid">
+    <hr>
+      <div class="widget-box widget-plain">
+      <div class="center">
+        <ul class="stat-boxes2">
+          <li>
+            <div class="left peity_bar_neutral"><span><span style="display: none;">2,4,9,7,12,10,12</span>
+              <canvas width="50" height="24"></canvas>
+              </span>+10%</div>
+            <div class="right"> <strong>15598</strong> Shipments </div>
+          </li>
+          <li>
+            <div class="left peity_line_neutral"><span><span style="display: none;">10,15,8,14,13,10,10,15</span>
+              <canvas width="50" height="24"></canvas>
+              </span>10%</div>
+            <div class="right"> <strong>150</strong> Damages </div>
+          </li>
+          <li>
+            <div class="left peity_bar_bad"><span><span style="display: none;">3,5,6,16,8,10,6</span>
+              <canvas width="50" height="24"></canvas>
+              </span>-40%</div>
+            <div class="right"> <strong>4560</strong> Lost Goods</div>
+          </li>
+          <li>
+            <div class="left peity_line_good"><span><span style="display: none;">12,6,9,23,14,10,17</span>
+              <canvas width="50" height="24"></canvas>
+              </span>+60%</div>
+            <div class="right"> <strong>5672</strong> Pending Shippments </div>
+          </li>
+          <li>
+            <div class="left peity_bar_good"><span>12,6,9,23,14,10,13</span>+30%</div>
+            <div class="right"> <strong>2560</strong> New Shipments </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+            <h5>Real Time Statistics</h5>
+          </div>
+          <div class="widget-content">
+            <div id="placeholder2"></div>
+            <p>Time between updates:
+              <input id="updateInterval" type="text" value="" style="text-align: right; width:5em">
+              milliseconds</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+            <h5>Statistics By Country &amp; Year</h5>
+          </div>
+          <div class="widget-content">
+            <div id="placeholder"></div>
+            <p id="choices"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Real-time-chart-js-->
 <script type="text/javascript">
-    window.onload = function () {
-        var chart = new CanvasJS.Chart("chartContainer", {
-            title: {
-                text: "Yearly results"
-            },
-            data: [
-                //array of dataSeries
-                {
-                    //dataSeries - first quarter
-                    /*** Change type "column" to "bar", "area", "line" or "pie"***/
+$(function () {
+    // we use an inline data source in the example, usually data would
+    // be fetched from a server
+    var data = [], totalPoints = 300;
+    function getRandomData() {
+        if (data.length > 0)
+            data = data.slice(1);
 
-                    type: "column",
-                    name: "First Quarter",
-                    showInLegend: true,
-                    dataPoints: [
-                        { label: "2012", y: 58 },
-                        { label: "2013", y: 69 },
-                        { label: "2014", y: 80 },
-                        { label: "2015", y: 74 },
-                        { label: "2016", y: 64 }
-                    ]
-                },
+        // do a random walk
+        while (data.length < totalPoints) {
+            var prev = data.length > 0 ? data[data.length - 1] : 50;
+            var y = prev + Math.random() * 10 - 5;
+            if (y < 0)
+                y = 0;
+            if (y > 100)
+                y = 100;
+            data.push(y);
+        }
 
-                {
-                    //dataSeries - second quarter
+        // zip the generated y values with the x values
+        var res = [];
+        for (var i = 0; i < data.length; ++i)
+            res.push([i, data[i]])
+        return res;
+    }
 
-                    type: "column",
-                    name: "Second Quarter",
-                    showInLegend: true,
-                    dataPoints: [
-                        { label: "2012", y: 63 },
-                        { label: "2013", y: 73 },
-                        { label: "2014", y: 88 },
-                        { label: "2015", y: 77 },
-                        { label: "2016", y: 60 }
-                    ]
-                }
-            ],
-            /** Set axisY properties here*/
-            axisY: {
-                prefix: "$",
-                suffix: "K",
-                includeZero: false
-            }
+    // setup control widget
+    var updateInterval = 30;
+    $("#updateInterval").val(updateInterval).change(function () {
+        var v = $(this).val();
+        if (v && !isNaN(+v)) {
+            updateInterval = +v;
+            if (updateInterval < 1)
+                updateInterval = 1;
+            if (updateInterval > 2000)
+                updateInterval = 2000;
+            $(this).val("" + updateInterval);
+        }
+    });
+
+    // setup plot
+    var options = {
+        series: { shadowSize: 0 }, // drawing is faster without shadows
+        yaxis: { min: 0, max: 100 },
+        xaxis: { show: false }
+    };
+    var plot = $.plot($("#placeholder2"), [ getRandomData() ], options);
+
+    function update() {
+        plot.setData([ getRandomData() ]);
+        // since the axes don't change, we don't need to call plot.setupGrid()
+        plot.draw();
+        
+        setTimeout(update, updateInterval);
+    }
+
+    update();
+});
+</script> 
+<!--Real-time-chart-js-end-->
+<!--Turning-series-chart-js-->
+<script type="text/javascript">
+$(function () {
+    var datasets = {
+        "usa": {
+            label: "USA",
+            data: [[2000, 483994], [2001, 479060], [2002, 457648], [2003, 401949], [2004, 424705], [2005, 402375], [2006, 377867], [2007, 357382], [2008, 337946], [2009, 336185], [2010, 328611], [2011, 329421], [2012, 342172], [2013, 344932], [2014, 387303], [2015, 440813], [2016, 480451], [2017, 504638], [2018, 528692]]
+        },        
+        "russia": {
+            label: "Russia",
+            data: [[2000, 218000], [2001, 203000], [2002, 171000], [2004, 42500], [2005, 37600], [2006, 36600], [2007, 21700], [2008, 19200], [2009, 21300], [2010, 13600], [2011, 14000], [2012, 19100], [2013, 21300], [2014, 23600], [2015, 25100], [2016, 26100], [2017, 31100], [2018, 34700]]
+        },
+        "uk": {
+            label: "UK",
+            data: [[2000, 62982], [2001, 62027], [2002, 60696], [2003, 62348], [2004, 58560], [2005, 56393], [2006, 54579], [2007, 50818], [2008, 50554], [2009, 48276], [2010, 47691], [2011, 47529], [2012, 47778], [2013, 48760], [2014, 50949], [2015, 57452], [2016, 60234], [2017, 60076], [2018, 59213]]
+        },
+        "germany": {
+            label: "Germany",
+            data: [[2000, 55627], [2001, 55475], [2002, 58464], [2003, 55134], [2004, 52436], [2005, 47139], [2006, 43962], [2007, 43238], [2008, 42395], [2009, 40854], [2010, 40993], [2011, 41822], [2012, 41147], [2013, 40474], [2014, 40604], [2015, 40044], [2016, 38816], [2017, 38060], [2018, 36984]]
+        },
+        "denmark": {
+            label: "Denmark",
+            data: [[2000, 3813], [2001, 3719], [2002, 3722], [2003, 3789], [2004, 3720], [2005, 3730], [2006, 3636], [2007, 3598], [2008, 3610], [2009, 3655], [2010, 3695], [2011, 3673], [2012, 3553], [2013, 3774], [2014, 3728], [2015, 3618], [2016, 3638], [2017, 3467], [2018, 3770]]
+        },
+        "sweden": {
+            label: "Sweden",
+            data: [[2000, 6402], [2001, 6474], [2002, 6605], [2003, 6209], [2004, 6035], [2005, 6020], [2006, 6000], [2007, 6018], [2008, 3958], [2009, 5780], [2010, 5954], [2011, 6178], [2012, 6411], [2013, 5993], [2014, 5833], [2015, 5791], [2016, 5450], [2017, 5521], [2018, 5271]]
+        },
+        "norway": {
+            label: "Norway",
+            data: [[2000, 4382], [2001, 4498], [2002, 4535], [2003, 4398], [2004, 4766], [2005, 4441], [2006, 4670], [2007, 4217], [2008, 4275], [2009, 4203], [2010, 4482], [2011, 4506], [2012, 4358], [2013, 4385], [2014, 5269], [2015, 5066], [2016, 5194], [2017, 4887], [2018, 4891]]
+        }
+    };
+
+    // hard-code color indices to prevent them from shifting as
+    // countries are turned on/off
+    var i = 0;
+    $.each(datasets, function(key, val) {
+        val.color = i;
+        ++i;
+    });
+    
+    // insert checkboxes 
+    var choiceContainer = $("#choices");
+    $.each(datasets, function(key, val) {
+        choiceContainer.append('<br/><input type="checkbox" name="' + key +
+                               '" checked="checked" id="id' + key + '">' +
+                               '<label for="id' + key + '">'
+                                + val.label + '</label>');
+    });
+    choiceContainer.find("input").click(plotAccordingToChoices);
+
+    
+    function plotAccordingToChoices() {
+        var data = [];
+
+        choiceContainer.find("input:checked").each(function () {
+            var key = $(this).attr("name");
+            if (key && datasets[key])
+                data.push(datasets[key]);
         });
 
-        chart.render();
-    };
-</script>
+        if (data.length > 0)
+            $.plot($("#placeholder"), data, {
+                yaxis: { min: 0 },
+                xaxis: { tickDecimals: 0 }
+            });
+    }
 
-<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-<div class="main">
-    <br />
-    <div id="chartContainer" style="height: 500px; width: 100%;"></div>
-
-    <br>
-    <div id="chartContainer2" style="height: 300px; width: 100%;">
-    </div>
-</div>
+    plotAccordingToChoices();
+});
+</script> 
+<!--Turning-series-chart-js-->
+<script src="/public/javascripts/matrix.dashboard.js"></script>

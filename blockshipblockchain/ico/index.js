@@ -16,7 +16,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 const middleware = require('../user/middlewareJWToken');
 const HTTP_PORT = 3000;
-
+const Speakeasy = require("speakeasy");
 const app = express();
 
 app.use(bodyParser.json());
@@ -157,7 +157,32 @@ app.post("/ico/register", (req, res) => {
     return next(err);
   }
 });
+//
+app.post("/ico/totp-secret", (request, response, next) => {
+  var secret = Speakeasy.generateSecret({ length: 20 });
+  
+});
 
+app.post("/ico/totp-generate", (request, response, next) => {
+  response.send({
+    "token": Speakeasy.totp({
+        secret: request.body.secret,
+        encoding: "base32"
+    }),
+    "remaining": (30 - Math.floor((new Date()).getTime() / 1000.0 % 30))
+});
+
+});
+app.post("/ico/totp-validate", (request, response, next) => {
+  response.send({
+      "valid": Speakeasy.totp.verify({
+          secret: request.body.secret,
+          encoding: "base32",
+          token: request.body.token,
+          window: 0
+      })
+  });
+});
 app.post('/ico/login', (req, res, next)=>{
   const { email, password } = req.body;
   if (email && password) {
@@ -169,15 +194,26 @@ app.post('/ico/login', (req, res, next)=>{
         });
         return next(err);
       } else {
+        var secret = Speakeasy.generateSecret({ length: 20 });
         let token = jwt.sign({username: email},
           SECRET,
-          { expiresIn: '24h' // expires in 24 hours
+          { 
+            expiresIn: '24h' // expires in 24 hours
           }
         );
-        res.json({
-          success: true,
-          message: 'Authentication successful!',
-          token: token
+        var pk = "none";
+        User.find({email:email}, function(err,result){
+          if (err) throw err;
+          console.log(result[0].publicKey);
+          res.json({
+            success: true,
+            message: 'Authentication successful!',
+            token: token,
+            publicKey: result[0].publicKey,
+            userType: result[0].type,
+            uid: result[0]._id,
+            email: email
+          });
         });
       }
     });

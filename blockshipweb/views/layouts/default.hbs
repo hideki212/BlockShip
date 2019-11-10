@@ -1,34 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Best Website</title>
   <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <link rel="stylesheet" type="text/css" href="/public/stylesheets/style.css"/>
-    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css"/>
+  <link rel="stylesheet" href="/public/stylesheets/bootstrap.min.css" />
+  <link rel="stylesheet" href="/public/stylesheets/bootstrap-responsive.min.css" />
+  <link rel="stylesheet" href="/public/stylesheets/bootstrap.min.css" />
+  <link rel="stylesheet" href="/public/stylesheets/bootstrap-responsive.min.css" />
+  <link rel="stylesheet" href="/public/stylesheets/fullcalendar.css" />
+  <link rel="stylesheet" href="/public/stylesheets/matrix-style.css" />
+  <link rel="stylesheet" href="/public/stylesheets/matrix-media.css" />
+  <link rel="stylesheet" href="/public/stylesheets/colorpicker.css" />
+  <link rel="stylesheet" href="/public/stylesheets/datepicker.css" />
+  <link rel="stylesheet" href="/public/stylesheets/uniform.css" />
+  <link rel="stylesheet" href="/public/stylesheets/select2.css" />
+  <link rel="stylesheet" href="/public/stylesheets/bootstrap-wysihtml5.css" />
+  <link href="/public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/public/stylesheets/jquery.gritter.css" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+  <link href="/public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
-    <script src="/public/javascripts/jquery.js"></script>
-    <script src="/public/javascripts/bootstrap.js"></script>
-    <script src="/public/javascripts/popper.js"></script>
-    <script src="/public/javascripts/script.js"></script>
+  <script src="/public/javascripts/excanvas.min.js"></script>
+  <script src="/public/javascripts/jquery.min.js"></script>
+  <script src="/public/javascripts/jquery.ui.custom.js"></script>
+  <script src="/public/javascripts/bootstrap.min.js"></script>
+  <script src="/public/javascripts/jquery.flot.min.js"></script>
+  <script src="/public/javascripts/jquery.flot.resize.min.js"></script>
+  <script src="/public/javascripts/jquery.peity.min.js"></script>
+  <script src="/public/javascripts/fullcalendar.min.js"></script>
+  <script src="/public/javascripts/matrix.js"></script>
+  <script src="/public/javascripts/matrix.dashboard.js"></script>
+  <script src="/public/javascripts/jquery.gritter.min.js"></script>
+  <script src="/public/javascripts/matrix.interface.js"></script>
+  <script src="/public/javascripts/matrix.chat.js"></script>
+  <script src="/public/javascripts/jquery.validate.js"></script>
+  <script src="/public/javascripts/matrix.form_validation.js"></script>
+  <script src="/public/javascripts/jquery.wizard.js"></script>
+  <script src="/public/javascripts/jquery.uniform.js"></script>
+  <script src="/public/javascripts/select2.min.js"></script>
+  <script src="/public/javascripts/matrix.popover.js"></script>
+  <script src="/public/javascripts/jquery.dataTables.min.js"></script>
+  <script src="/public/javascripts/matrix.tables.js"></script>
+  <script src="/public/javascripts/script.js"></script>
+  <script src="/public/javascripts/bootstrap-wysihtml5.js"></script>
+  <script src="/public/javascripts/bootstrap-colorpicker.js"></script>
+  <script src="/public/javascripts/bootstrap-datepicker.js"></script>
+
 </head>
+
 <body>
-    <div class="topnav">  
-	  <img src="/public/images/logo.jpeg" alt="logo" />
-	  <h1>BlockShip</h1>
-    </div>
-  <!-- Side navigation -->
-  <div class="sidenav">
-    <a href="/user/editprofile">Edit Profile</a>
-    <a href="/user/createbilloflading">Create Bill of Lading</a>
-    <a href="/user/Analytics">Analytics</a>
-  </div>
-  <div class="container">
-    
-	  {{{body}}}
-  </div>
+  {{#if login}}
+  {{> nav}}
+  {{> sidebar}}
+  {{/if}}
+  {{{body}}}
   {{> footer}}
+
 </body>
+
 </html>
