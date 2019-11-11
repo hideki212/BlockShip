@@ -114,7 +114,30 @@ router.get('/logout', function(req, res) {
         res.redirect('/');
      }
   });
+});
 
+router.get("/register", function(req, res, next) {
+  if (!req.session.login) {
+    return res.render("users/register", { layout: "default"});
+  } else {
+    return res.redirect("/users/")
+  }
+})
+
+router.post("/register", function(req, res, next) {
+  request.post(
+    {
+      url: "http://localhost:3000/ico/register",
+      form: { email: req.body.email, password: req.body.password, passwordConfirm: req.body.passwordConfirm, type:req.body.type }
+    },
+    function(err, httpResponse, body) {
+      if (err) {
+        console.error("Login failed error :" + err);
+        return res.json({ success: false, message: err });
+      }
+      return res.redirect("/");
+    }
+  );
 });
 
 module.exports = router;

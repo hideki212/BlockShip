@@ -125,8 +125,7 @@ app.post("/ico/send-of",middleware.checkToken, (req, res) => {
 app.post("/ico/register", (req, res) => {
   const { email, password, passwordConfirm, type } = req.body;
   if(password !== passwordConfirm){
-    res.json({ success: false, message: "passwords do not match"  });
-    return false;
+    return res.json({ success: false, message: "passwords do not match"  });
   }
   if (email && password && passwordConfirm && type) {
     var time = Date.now().toString();
@@ -154,7 +153,7 @@ app.post("/ico/register", (req, res) => {
   } else {
     var err = new Error('All fields required.');
     err.status = 400;
-    return next(err);
+    return res.json({success: false, error:err});
   }
 });
 //
